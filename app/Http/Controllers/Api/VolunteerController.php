@@ -3,10 +3,11 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
-use App\Models\Volunteer;
-use App\Http\Resources\VolunteerResource;
 use App\Http\Requests\StoreVolunteerRequest;
+use App\Http\Resources\VolunteerResource;
+use App\Models\Volunteer;
+use Illuminate\Http\Request;
+
 class VolunteerController extends Controller
 {
     /**
@@ -16,17 +17,7 @@ class VolunteerController extends Controller
      */
     public function index()
     {
-        return VolunteerResource::collection(Volunteer::select('id','name','tempat_lahir','tanggal_lahir','alamat','pekerjaan','user_id')->get());
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+        return VolunteerResource::collection(Volunteer::all());
     }
 
     /**
@@ -37,14 +28,15 @@ class VolunteerController extends Controller
      */
     public function store(StoreVolunteerRequest $request)
     {
-        $volunteer = auth()->user()->volunteers->create($request->validated());
-        return new VolunteerResource($volunteer);
+        return new VolunteerResource(Volunteer::create($request->validated()));
+        // $transaction = auth()->user()->transactions()->create($request->validated());
+        // return new TransactionResource($transaction);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\Volunteer  $volunteer
      * @return \Illuminate\Http\Response
      */
     public function show(Volunteer $volunteer)
@@ -53,21 +45,10 @@ class VolunteerController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
-
-    /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  \App\Models\Volunteer  $volunteer
      * @return \Illuminate\Http\Response
      */
     public function update(StoreVolunteerRequest $request, Volunteer $volunteer)
@@ -79,7 +60,7 @@ class VolunteerController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\Models\Volunteer  $volunteer
      * @return \Illuminate\Http\Response
      */
     public function destroy(Volunteer $volunteer)

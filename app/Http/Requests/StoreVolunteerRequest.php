@@ -24,9 +24,9 @@ class StoreVolunteerRequest extends FormRequest
     public function rules()
     {
         return [
-            'name'=> 'required',
+            'nama'=> 'required',
             'tempat_lahir'=>'required',
-            'tanggal_lahir'=>'required',
+            'tanggal_lahir'=>'required | date',
             'alamat'=>'required',
             'pekerjaan'=>'required',
         ];

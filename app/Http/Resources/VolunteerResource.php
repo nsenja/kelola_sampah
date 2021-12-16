@@ -15,14 +15,11 @@ class VolunteerResource extends JsonResource
     public function toArray($request)
     {
         return [
-
-            'id' => $this->id,
-            'name' => $this->name,
-            'tempat_lahir'=> $this->tempat_lahir,
+            'nama'=> $this->nama,
+            'tempat_lahir' => $this->tempat_lahir,
             'tanggal_lahir' => $this->tanggal_lahir,
             'alamat' => $this->alamat,
             'pekerjaan' => $this->pekerjaan,
-            'created_at' => $this->created_at,
         ];
     }
 }
