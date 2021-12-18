@@ -4,7 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class TransactionResource extends JsonResource
+class SavingResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -15,13 +15,11 @@ class TransactionResource extends JsonResource
     public function toArray($request)
     {
         return [
-
             'id' => $this->id,
-            'category_id' => $this->category_id,
-            'nama_kategori'=> 'Kategori '.$this->category->name,
-            'tanggal_transaksi' => $this->tanggal_transaksi,
-            'jumlah' => $this->jumlah. ' Kantong',
-            'description' => $this->description,
+            'category_id'=> $this->category_id,
+            // 'nama_kategori'=> 'Kategori '.$this->category->name,
+            'tanggal' => $this->tanggal,
+            'jumlah_sampah_yang_dihasilkan' => $this->jumlah_sampah_yang_dihasilkan. ' Kantong',
             'created_at' => $this->created_at,
         ];
     }

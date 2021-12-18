@@ -28,7 +28,9 @@ Route::group(['middleware' => 'auth:sanctum'], function() {
     Route::apiResource('categories', \App\Http\Controllers\Api\CategoryController::class);
     Route::apiResource('transactions', \App\Http\Controllers\Api\TransactionController::class);
     Route::apiResource('volunteers', \App\Http\Controllers\Api\VolunteerController::class);
+    Route::apiResource('savings', \App\Http\Controllers\Api\SavingController::class);
 });
+
 
 Route::post('/sanctum/token', function (Request $request) {
     $request->validate([

@@ -2,34 +2,22 @@
 
 namespace App\Models;
 
-use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Transaction extends Model
+class Saving extends Model
 {
     use HasFactory;
     protected $fillable = [
         'category_id',
-        'tanggal_transaksi',
-        'jumlah',
-        'description',
-        'biaya',
-        'user_id'
+        'tanggal',
+        'jumlah_sampah_yang_dihasilkan',
+        // 'user_id'
     ];
-
-    // protected $dates = ['tanggal_transaksi'];
-
     public function category(){
         return $this->belongsTo(Category::class);
     }
-     
-    // public function setAmountAttribute($value)
-    // {
-    //     $this->attributes['jumlah'] = $value *100;
-    // }
-    
     protected static function booted()
     {
         if (auth()->check()) {
