@@ -28,7 +28,8 @@ class SavingController extends Controller
      */
     public function store(StoreSavingRequest $request)
     {
-        return new SavingResource(Saving::create($request->validated()));
+        $saving = auth()->user()->savings()->create($request->validated());
+        return new SavingResource($saving);
     }
 
     /**
